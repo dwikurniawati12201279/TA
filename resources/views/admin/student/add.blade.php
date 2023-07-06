@@ -1,0 +1,172 @@
+@extends('layouts.app')
+
+
+
+@section('content')
+    
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Add New Student</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <form method="post" action="" enctype="multipart/form-data">
+                {{ csrf_field() }}
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label>Nama<span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" value="{{ old('name') }}" name="name" required placeholder="Nama">
+                            <div style="color:red">{{ $errors->first('name') }}</div> 
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>NIS<span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" value="{{ old('nis') }}" name="nis" required placeholder="NIS">
+                            <div style="color:red">{{ $errors->first('nis') }}</div> 
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Kelas<span style="color: red;">*</span></label>
+                            <select class="form-control" required name="class_id">
+                                <option value="">Pilih Kelas</option>
+                                @foreach ($getClass as $value)
+                                    <option {{ (old('class_id') == '$value->id') ? 'selected' : '' }}value="{{ $value->id }}">{{ $value->name }}</option>
+                                @endforeach
+                            </select>
+                            <div style="color:red">{{ $errors->first('class_id') }}</div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                          <label>Jenis Kelamin<span style="color: red;">*</span></label>
+                          <select class="form-control" required name="gender">
+                          <option value="">Pilih Jenis Kelamin</option>
+                          <option {{ (old('gender') == 'Laki-laki') ? 'selected' : '' }} value="Laki-laki">Laki-laki</option>
+                          <option {{ (old('gender') == 'Perempuan') ? 'selected' : '' }} value="Perempuan">Perempuan</option>
+                          </select>
+                          <div style="color:red">{{ $errors->first('gender') }}</div>
+                      </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Tanggal Lahir<span style="color: red;">*</span></label>
+                            <input type="date" class="form-control" required value="{{ old('tgl_lahir') }}" name="tgl_lahir">
+                            <div style="color:red">{{ $errors->first('tgl_lahir') }}</div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Tempat Lahir<span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" value="{{ old('tmp_lahir') }}" name="tmp_lahir" required placeholder="Tempat Lahir">
+                            <div style="color:red">{{ $errors->first('tmp_lahir') }}</div>
+                          </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Agama<span style="color: red;">*</span></label>
+                            <select class="form-control" required name="agama">
+                            <option value="">Pilih Agama</option>
+                            <option {{ (old('agama') == 'Islam') ? 'selected' : '' }} value="Islam">Islam</option>
+                            <option {{ (old('agama') == 'Islam') ? 'selected' : '' }} value="Islam">Katolik</option>
+                            <option {{ (old('agama') == 'Protestan') ? 'selected' : '' }} value="Protestan">Protestan</option> 
+                            <option {{ (old('agama') == 'Hindu') ? 'selected' : '' }} value="Hindu">Hindu</option>
+                            <option {{ (old('agama') == 'Budha') ? 'selected' : '' }} value="Budha">Budha</option>
+                            </select>
+                            <div style="color:red">{{ $errors->first('agama') }}</div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Alamat<span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" value="{{ old('alamat') }}" name="alamat" required placeholder="Alamat">
+                            <div style="color:red">{{ $errors->first('alamat') }}</div>
+                          </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Nama Ayah<span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" value="{{ old('nama_ayah') }}" name="nama_ayah" required placeholder="Nama Ayah">
+                            <div style="color:red">{{ $errors->first('nama_ayah') }}</div>
+                          </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Nama Ibu<span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" value="{{ old('nama_ibu') }}" name="nama_ibu" required placeholder="Nama Ibu">
+                            <div style="color:red">{{ $errors->first('nama_ibu') }}</div>
+                          </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Nomor Telepon<span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" value="{{ old('nomor_hp') }}" name="nomor_hp" required placeholder="Nomor Telepon">
+                            <div style="color:red">{{ $errors->first('nomor_hp') }}</div>
+                          </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Admission Date<span style="color: red;">*</span></label>
+                            <input type="date" class="form-control" value="{{ old('admission_date') }}" name="admission_date" required placeholder="Admission Date">
+                            <div style="color:red">{{ $errors->first('admission_date') }}</div>
+                          </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Foto Profile<span style="color: red;">*</span></label>
+                            <input type="file" class="form-control" name="profile_pic">
+                            <div style="color:red">{{ $errors->first('profile_pic') }}</div>
+                        </div>
+
+                    <div class="form-group col-md-6">
+                      <label>Status<span style="color: red;">*</span></label>
+                      <select class="form-control" required name="status">
+                      <option value="">Select Status</option>
+                      <option {{ (old('status') == 0) ? 'selected' : '' }} value="0">Active</option>
+                      <option {{ (old('status') == 1) ? 'selected' : '' }} value="1">Inactive</option>
+                      </select>
+                      <div style="color:red">{{ $errors->first('status') }}</div>
+                    </div>
+
+
+                    </div>
+
+                    <hr/>
+
+                  <div class="form-group">
+                    <label>Email<span style="color: red;">*</span></label>
+                    <input type="email" class="form-control" name="email" value="{{ old('email') }}" required placeholder="Email">
+                   <div style="color:red">{{ $errors->first('email') }}</div> 
+                  </div>
+               
+                    <div class="form-group">
+                    <label>Password<span style="color: red;">*</span></label>
+                    <input type="password" class="form-control" name="password" required placeholder="Password">
+                </div>
+                </div>
+            </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+
+          </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+
+@endsection
